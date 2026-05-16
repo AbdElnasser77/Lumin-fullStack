@@ -1,0 +1,67 @@
+<div class="w-150 bg-surface-lowest rounded-2xl p-10 shadow-2xl">
+  <form [formGroup]="signupForm">
+    <div class="mb-7">
+    <div class="eyebrow mb-3.5">Begin</div>
+      <h1 class="text-3xl leading-[1.05] mb-2.5 font-bold">
+        Make space for<br>what matters.
+      </h1>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <div>
+        <label class="lumin-label">First name</label>
+        <input class="lumin-input" formControlName="firstName" type="text" placeholder="Iris" />
+        <validation-message [control]="signupForm.get('firstName')" label="First name" />
+      </div>
+      <div>
+        <label class="lumin-label">Last name</label>
+        <input class="lumin-input" formControlName="lastName" type="text" placeholder="Halloran" />
+        <validation-message [control]="signupForm.get('lastName')" label="Last name" />
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="lumin-label">Email</label>
+      <input class="lumin-input" formControlName="email" type="email" placeholder="iris@studio.co" />
+      <validation-message [control]="signupForm.get('email')" label="Email" />
+    </div>
+
+    <div class="mb-2">
+      <label class="lumin-label">Password</label>
+      <input class="lumin-input" formControlName="password" type="password" placeholder="••••••••••" />
+      <div class="text-[12px] text-on-muted my-2">At least 8 characters · one number · one symbol</div>
+      <validation-message [control]="signupForm.get('password')" label="Password" />
+    </div>
+
+    @if(signupForm.get('password')?.dirty){
+      <password-strength [password]="this.signupForm.get('password')?.value"></password-strength>
+    }
+
+    <div class="mb-4">
+      <label class="lumin-label">Confirm Password</label>
+      <input class="lumin-input" formControlName="rePassword" type="password" placeholder="••••••••••" />
+      <validation-message
+        [control]="signupForm.get('rePassword')"
+        label="Confirm password"
+        [groupErrors]="signupForm.errors" />
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-start gap-2.5 text-[12.5px] text-on-variant leading-relaxed cursor-pointer">
+        <input type="checkbox" formControlName="checkTerms" class="w-4.5 h-4.5 cursor-pointer mt-0.5">
+        <span>I agree to the <a routerLink="" class="text-primary font-semibold">Terms of Service</a> and the <a
+            routerLink="" class="text-primary font-semibold">Privacy Notice</a>.</span>
+      </label>
+      <validation-message [control]="signupForm.get('checkTerms')" label="Terms" />
+    </div>
+
+    @if(isloading){
+      <spinner></spinner>
+    }
+    <button [hidden]="isloading" class="btn-primary w-full h-12 text-[15px] justify-center" (click)="submitForm()">Create my account</button>
+
+    <div class="text-center mt-6 text-[13px] text-on-variant">
+      Already with us? <a routerLink="/auth/sign-in" class="text-primary font-semibold no-underline">Sign in</a>
+    </div>
+  </form>
+</div>

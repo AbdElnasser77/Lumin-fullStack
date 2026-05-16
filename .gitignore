@@ -1,0 +1,28 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.pdb
+*.dll
+*.exe
+
+# Environment & secrets
+appsettings.*.json
+!appsettings.json
+*.env
+.env
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+*.js.map
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

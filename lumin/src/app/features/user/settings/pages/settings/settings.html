@@ -1,0 +1,637 @@
+<div class="h-full flex overflow-hidden" style="background:#fcf9f8">
+
+  <!-- ── SIDEBAR ── -->
+  <div style="width:260px;flex-shrink:0;padding:32px 16px 32px 28px;display:flex;flex-direction:column;overflow-y:auto;border-right:1px solid #ebe7e6">
+    <div class="eyebrow" style="margin-bottom:6px">WORKSPACE</div>
+    <h1 style="font-size:26px;line-height:1.1;margin-bottom:28px">Settings</h1>
+
+    @for (group of groups; track group.label) {
+      <div style="margin-bottom:18px">
+        <div class="eyebrow" style="margin-bottom:8px;padding-left:12px;font-size:9.5px">{{ group.label }}</div>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          @for (s of group.items; track s.id) {
+            <div (click)="activeSection = s.id"
+                 [style.background]="activeSection === s.id ? '#f6f3f2' : 'transparent'"
+                 [style.font-weight]="activeSection === s.id ? '600' : '500'"
+                 [style.color]="activeSection === s.id ? '#1c1b1b' : '#4a4849'"
+                 style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:0.75rem;cursor:pointer;font-size:13.5px">
+              <span [style.background]="activeSection === s.id ? '#24389c' : 'transparent'"
+                    style="width:4px;height:16px;border-radius:2px;flex-shrink:0"></span>
+              {{ s.label }}
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div style="flex:1;padding:32px 48px 48px;overflow-y:auto;background:#f6f3f2;border-top-left-radius:24px">
+
+    <!-- ══ PROFILE ══ -->
+    @if (activeSection === 'profile') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">ACCOUNT · PROFILE</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">Your identity.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">This is how you appear inside Lumin and in shared notes. Visible only to people you invite.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Avatar &amp; name</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:flex;align-items:center;gap:24px;padding:12px 0">
+            <div style="width:88px;height:88px;border-radius:999px;background:linear-gradient(135deg,#006a6a,#4ddedb);display:flex;align-items:center;justify-content:center;color:white;font-family:'Manrope',sans-serif;font-weight:700;font-size:32px;flex-shrink:0">IH</div>
+            <div style="flex:1">
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <button class="btn-secondary">Upload photo</button>
+                <button class="btn-tertiary">Remove</button>
+              </div>
+              <div style="font-size:12px;color:#7a7778">JPG, PNG or WebP · max 4MB · square crop recommended</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+            <div><label class="lumin-label">First name</label><input class="lumin-input" value="Iris" /></div>
+            <div><label class="lumin-label">Last name</label><input class="lumin-input" value="Halloran" /></div>
+          </div>
+          <div style="margin-top:14px">
+            <label class="lumin-label">Display name (optional)</label>
+            <input class="lumin-input" value="iris.h" />
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">A few details</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;max-width:540px;line-height:1.5">Optional — used for tiny editorial touches like personalised greetings.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div><label class="lumin-label">Pronouns</label><input class="lumin-input" value="she / her" /></div>
+            <div><label class="lumin-label">Time zone</label><input class="lumin-input" value="Europe / Lisbon · GMT+1" /></div>
+            <div><label class="lumin-label">Where you work</label><input class="lumin-input" value="A studio in Alfama" /></div>
+            <div><label class="lumin-label">Your role (private)</label><input class="lumin-input" value="Ceramicist · writer" /></div>
+          </div>
+          <div style="margin-top:14px">
+            <label class="lumin-label">One line about you</label>
+            <input class="lumin-input" value="Slow making, slow sentences." />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+        <button class="btn-secondary">Discard</button>
+        <button class="btn-primary">Save changes</button>
+      </div>
+    }
+
+    <!-- ══ ACCOUNT & SECURITY ══ -->
+    @if (activeSection === 'account') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">ACCOUNT · SECURITY</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">Your sign-in &amp; keys.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Lumin stores nothing it doesn't need. Manage the keys to your account here.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Email</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Primary email</div><div style="font-size:12.5px;color:#7a7778">Used to sign in and receive recovery codes.</div></div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13px">iris&#64;studio.co</span><span class="pill pill-success">VERIFIED</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Backup email</div><div style="font-size:12.5px;color:#7a7778">Recovery falls back to this if you lose access to the primary.</div></div>
+            <button class="btn-tertiary">+ Add backup</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Password</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Password</div><div style="font-size:12.5px;color:#7a7778">Last changed 21 days ago.</div></div>
+            <button class="btn-secondary">Change</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Two-factor authentication</div><div style="font-size:12.5px;color:#7a7778">Required for sign-ins on new devices.</div></div>
+            <div style="display:flex;align-items:center;gap:10px"><span class="pill pill-success">ENABLED</span><div class="lumin-toggle is-on"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">Active sessions</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;line-height:1.5">If you don't recognize a session, sign it out immediately and change your password.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">MacBook Pro · Lisbon</div><div style="font-size:12.5px;color:#7a7778">Now · this session</div></div>
+            <span class="pill pill-indigo">CURRENT</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">iPhone 15 · Lisbon</div><div style="font-size:12.5px;color:#7a7778">2 hours ago</div></div>
+            <button class="btn-tertiary">Sign out</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Firefox · Porto</div><div style="font-size:12.5px;color:#7a7778">Apr 28, 2026</div></div>
+            <button class="btn-tertiary">Sign out</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Danger zone</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Export everything</div><div style="font-size:12.5px;color:#7a7778">A single .zip with your tasks, habits, transactions, and notes.</div></div>
+            <button class="btn-secondary">Request export</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Delete account</div><div style="font-size:12.5px;color:#7a7778">This cannot be undone. All data is removed after a 30-day grace period.</div></div>
+            <button style="background:transparent;border:none;color:#b3261e;font-weight:600;font-size:13.5px;cursor:pointer;padding:8px 0">Delete my account</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ NOTIFICATIONS ══ -->
+    @if (activeSection === 'notifications') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">ACCOUNT · NOTIFICATIONS</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">What you'd like to hear about.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">A quiet inbox is a feature. Turn things on only when they would actually help.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Channels</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Email</div><div style="font-size:12.5px;color:#7a7778">Sent to iris&#64;studio.co</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Push (mobile + browser)</div><div style="font-size:12.5px;color:#7a7778">Two devices registered.</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">In-app inbox</div><div style="font-size:12.5px;color:#7a7778">A list of everything, kept inside Lumin.</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">What to send</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr 80px 80px 80px;gap:12px;padding:8px 0 12px;font-size:10px;color:#7a7778;letter-spacing:0.12em;text-transform:uppercase;font-weight:600">
+            <div></div><div style="text-align:center">Email</div><div style="text-align:center">Push</div><div style="text-align:center">Time</div>
+          </div>
+          @for (item of [
+            {name:'Daily plan reminder',hint:'A short morning note with today\'s tasks and habits.',email:true,push:true,time:'07:30'},
+            {name:'Habit check-in',hint:'Gentle nudge at each habit\'s scheduled time.',email:false,push:true,time:''},
+            {name:'Weekly review',hint:'Sunday evening — last week, next week.',email:true,push:false,time:'Sun 18:00'},
+            {name:'Budget over a category',hint:'Only when a category crosses 100%.',email:true,push:true,time:''},
+            {name:'Large transaction',hint:'Heads-up when something over $200 is recorded.',email:false,push:true,time:''},
+            {name:'Product updates',hint:'Monthly note from the Lumin team. No marketing.',email:true,push:false,time:''}
+          ]; track item.name; let last = $last) {
+            <div [style.border-bottom]="last ? 'none' : '1px solid #f6f3f2'" style="display:grid;grid-template-columns:1fr 80px 80px 80px;gap:12px;align-items:center;padding:14px 0">
+              <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ item.name }}</div><div style="font-size:12.5px;color:#7a7778;line-height:1.4">{{ item.hint }}</div></div>
+              <div style="display:flex;justify-content:center"><div [class]="'lumin-toggle' + (item.email ? ' is-on' : '')"></div></div>
+              <div style="display:flex;justify-content:center"><div [class]="'lumin-toggle' + (item.push ? ' is-on' : '')"></div></div>
+              <div class="numeric" style="font-size:11.5px;text-align:center;color:#7a7778">{{ item.time || '—' }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">Quiet hours</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;line-height:1.5">Lumin holds non-urgent notifications during these hours.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div><label class="lumin-label">From</label><input class="lumin-input" value="22:00" /></div>
+            <div><label class="lumin-label">Until</label><input class="lumin-input" value="07:00" /></div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ APPEARANCE ══ -->
+    @if (activeSection === 'appearance') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">WORKSPACE · APPEARANCE</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">The shape of your space.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Subtle, considered defaults. Adjust to taste — the design system flexes.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Theme</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0">
+            <div style="border-radius:0.75rem;padding:14px;cursor:pointer;background:#fcf9f8;outline:2px solid #24389c;outline-offset:2px">
+              <div style="background:white;border-radius:6px;padding:10px 12px;margin-bottom:10px">
+                <div style="height:5px;width:60%;background:#1c1b1b;opacity:0.7;border-radius:999px;margin-bottom:6px"></div>
+                <div style="height:4px;width:90%;background:#1c1b1b;opacity:0.25;border-radius:999px;margin-bottom:4px"></div>
+                <div style="height:4px;width:70%;background:#1c1b1b;opacity:0.25;border-radius:999px"></div>
+              </div>
+              <div style="font-size:13px;font-weight:600;color:#1c1b1b">Paper</div>
+              <div style="font-size:11.5px;color:#1c1b1b;opacity:0.55">Warm light</div>
+            </div>
+            <div style="border-radius:0.75rem;padding:14px;cursor:pointer;background:#f3eee8;outline:2px solid transparent;outline-offset:2px">
+              <div style="background:#fcf9f8;border-radius:6px;padding:10px 12px;margin-bottom:10px">
+                <div style="height:5px;width:60%;background:#1c1b1b;opacity:0.7;border-radius:999px;margin-bottom:6px"></div>
+                <div style="height:4px;width:90%;background:#1c1b1b;opacity:0.25;border-radius:999px;margin-bottom:4px"></div>
+                <div style="height:4px;width:70%;background:#1c1b1b;opacity:0.25;border-radius:999px"></div>
+              </div>
+              <div style="font-size:13px;font-weight:600;color:#1c1b1b">Vellum</div>
+              <div style="font-size:11.5px;color:#1c1b1b;opacity:0.55">Slightly cooler</div>
+            </div>
+            <div style="border-radius:0.75rem;padding:14px;cursor:pointer;background:#1c1b1b;outline:2px solid transparent;outline-offset:2px">
+              <div style="background:#252424;border-radius:6px;padding:10px 12px;margin-bottom:10px">
+                <div style="height:5px;width:60%;background:#fcf9f8;opacity:0.7;border-radius:999px;margin-bottom:6px"></div>
+                <div style="height:4px;width:90%;background:#fcf9f8;opacity:0.25;border-radius:999px;margin-bottom:4px"></div>
+                <div style="height:4px;width:70%;background:#fcf9f8;opacity:0.25;border-radius:999px"></div>
+              </div>
+              <div style="font-size:13px;font-weight:600;color:#fcf9f8">Charcoal</div>
+              <div style="font-size:11.5px;color:#fcf9f8;opacity:0.55">Low light</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Accent</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:flex;gap:10px;padding:8px 0;flex-wrap:wrap">
+            @for (a of [{name:'Indigo',color:'#24389c',active:true},{name:'Teal',color:'#006a6a'},{name:'Plum',color:'#7a3d8e'},{name:'Slate',color:'#3b4955'},{name:'Ember',color:'#b06a00'},{name:'Moss',color:'#3a6b3a'}]; track a.name) {
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer">
+                <div [style.background]="a.color" [style.outline]="a.active ? '2px solid #1c1b1b' : '2px solid transparent'" style="width:44px;height:44px;border-radius:0.75rem;outline-offset:3px"></div>
+                <div style="font-size:11px;color:#4a4849">{{ a.name }}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Typography &amp; density</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Display font</div><div style="font-size:12.5px;color:#7a7778">Used for headlines and big numbers.</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">Manrope</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Body font</div><div style="font-size:12.5px;color:#7a7778">Used everywhere else.</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">Inter</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Density</div><div style="font-size:12.5px;color:#7a7778">How tightly Lumin packs content.</div></div>
+            <div style="display:flex;gap:6px">
+              <button style="padding:7px 14px;border-radius:999px;border:none;background:#f6f3f2;color:#4a4849;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer">Cozy</button>
+              <button style="padding:7px 14px;border-radius:999px;border:none;background:#24389c;color:white;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer">Comfortable</button>
+              <button style="padding:7px 14px;border-radius:999px;border:none;background:#f6f3f2;color:#4a4849;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer">Compact</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Reduced motion</div><div style="font-size:12.5px;color:#7a7778">Tones down animations across the app.</div></div>
+            <div class="lumin-toggle"></div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ TASKS PREFS ══ -->
+    @if (activeSection === 'tasks') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">WORKSPACE · TASKS</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">How tasks behave.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Defaults for new tasks and how completed ones are handled.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Defaults</h3></div>
+        <div style="padding:4px 28px 24px">
+          @for (row of [
+            {label:'Default list',hint:'Where new tasks land when you don\'t specify a list.',value:'Inbox'},
+            {label:'Default priority',hint:'',value:'Medium'},
+            {label:'Start of week',hint:'',value:'Monday'}
+          ]; track row.label) {
+            <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+              <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ row.label }}</div>@if (row.hint) {<div style="font-size:12.5px;color:#7a7778">{{ row.hint }}</div>}</div>
+              <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">{{ row.value }}</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+            </div>
+          }
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500">Show weekend in planner</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Behaviour</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Auto-archive completed tasks</div><div style="font-size:12.5px;color:#7a7778">Move tasks to 'Completed' after this many days.</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">After 7 days</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Roll over unfinished tasks</div><div style="font-size:12.5px;color:#7a7778">At midnight, push undone tasks to the next day.</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Subtask checkmarks</div><div style="font-size:12.5px;color:#7a7778">Completing all subtasks marks the parent done.</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">Categories</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;line-height:1.5">Lists are bigger buckets. Categories are the colored chips beside a task.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;padding:6px 0">
+            @for (c of [{name:'Studio',color:'#24389c'},{name:'Writing',color:'#3f51b5'},{name:'Admin',color:'#b06a00'},{name:'Personal',color:'#006a6a'},{name:'Reading',color:'#7a3d8e'},{name:'Maintenance',color:'#4a4849'}]; track c.name) {
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 12px 6px 8px;background:#f6f3f2;border-radius:999px;font-size:12.5px;font-weight:500">
+                <span [style.background]="c.color" style="width:10px;height:10px;border-radius:3px"></span>
+                {{ c.name }}
+                <span style="margin-left:4px;color:#7a7778;cursor:pointer">×</span>
+              </div>
+            }
+            <button class="btn-tertiary" style="padding:6px 12px">+ New category</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ HABITS PREFS ══ -->
+    @if (activeSection === 'habits') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">WORKSPACE · HABITS</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">The shape of your practice.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Rules that govern streaks, check-ins, and how strict Lumin is when life happens.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Defaults</h3></div>
+        <div style="padding:4px 28px 24px">
+          @for (row of [{label:'Default cadence',value:'Every day'},{label:'Default reminder time',value:'07:30'},{label:'Default goal length',hint:'Streak target for a new habit.',value:'30 days'}]; track row.label; let last = $last) {
+            <div [style.border-bottom]="last ? 'none' : '1px solid #f6f3f2'" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+              <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ row.label }}</div>@if (row.hint) {<div style="font-size:12.5px;color:#7a7778">{{ row.hint }}</div>}</div>
+              <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">{{ row.value }}</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Streak rules</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Skip days</div><div style="font-size:12.5px;color:#7a7778">Per habit, allow this many free passes per week before the streak breaks.</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">1 per week</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Vacation mode</div><div style="font-size:12.5px;color:#7a7778">Pause all habits without breaking streaks.</div></div>
+            <div style="display:flex;align-items:center;gap:10px"><span class="pill pill-neutral">OFF</span><div class="lumin-toggle"></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Restart on break</div><div style="font-size:12.5px;color:#7a7778">When a streak breaks, start the new one at 1 immediately.</div></div>
+            <div class="lumin-toggle is-on"></div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ BUDGET PREFS ══ -->
+    @if (activeSection === 'budget') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#006a6a">WORKSPACE · BUDGET</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">Money, your way.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Currency, period, and how Lumin treats spending you'd rather not see at every glance.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Currency &amp; period</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500">Primary currency</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">USD · $</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Show secondary currency</div><div style="font-size:12.5px;color:#7a7778">For travel — shows a second figure beside each amount.</div></div>
+            <div class="lumin-toggle"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Budgeting period</div><div style="font-size:12.5px;color:#7a7778">How Lumin groups your budgets and resets totals.</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">Monthly</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500">Period starts on</div></div>
+            <div style="background:#f6f3f2;border-radius:0.75rem;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;min-width:160px;cursor:pointer"><span style="flex:1">The 1st</span><span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">Connected accounts</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;line-height:1.5">Read-only. Lumin never moves money.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          @for (a of [{name:'Checking · ····3041',bank:'Caixa Geral',sync:'Synced 3 min ago',warning:false},{name:'Savings · ····8806',bank:'Caixa Geral',sync:'Synced 3 min ago',warning:false},{name:'Credit · ····1145',bank:'N26',sync:'Last synced Apr 30 · re-auth needed',warning:true}]; track a.name; let last = $last) {
+            <div [style.border-bottom]="last ? 'none' : '1px solid #f6f3f2'" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+              <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ a.name }}</div><div style="font-size:12.5px;color:#7a7778">{{ a.bank }} · {{ a.sync }}</div></div>
+              @if (a.warning) { <button class="btn-secondary">Reconnect</button> }
+              @else { <span class="pill pill-success">LIVE</span> }
+            </div>
+          }
+          <div style="padding-top:12px"><button class="btn-tertiary" style="padding:6px 0">+ Connect another account</button></div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Privacy</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Blur amounts by default</div><div style="font-size:12.5px;color:#7a7778">Hide dollar values until you hover or tap.</div></div>
+            <div class="lumin-toggle"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Round everything</div><div style="font-size:12.5px;color:#7a7778">Display amounts to the nearest dollar.</div></div>
+            <div class="lumin-toggle"></div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ INTEGRATIONS ══ -->
+    @if (activeSection === 'integrations') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">WORKSPACE · INTEGRATIONS</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">What plugs in.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Lumin talks to the tools you already use, quietly and only with your say-so.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        @for (it of [
+          {name:'Google Calendar',cat:'Calendar',desc:'Two-way sync of timed tasks and habit reminders.',state:'connected',acc:'iris@studio.co'},
+          {name:'Apple Calendar',cat:'Calendar',desc:'One-way push of scheduled tasks.',state:'connected',acc:'iCloud · iris'},
+          {name:'Notion',cat:'Notes',desc:'Link tasks back to source pages.',state:'available',acc:''},
+          {name:'Things 3',cat:'Tasks',desc:'Import existing projects on first run.',state:'available',acc:''},
+          {name:'Plaid',cat:'Money',desc:'The underlying provider for bank connections.',state:'connected',acc:'3 accounts'},
+          {name:'Slack',cat:'Messaging',desc:'Send Lumin reminders to a private channel.',state:'available',acc:''},
+          {name:'Raycast',cat:'Launcher',desc:'Quick add tasks from anywhere on your Mac.',state:'connected',acc:''},
+          {name:'Public API',cat:'Developer',desc:'Personal access tokens for scripts and Shortcuts.',state:'configure',acc:''}
+        ]; track it.name) {
+          <div style="background:white;border-radius:1.5rem;padding:20px 22px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="width:42px;height:42px;border-radius:0.75rem;background:#f6f3f2;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;color:#24389c">{{ it.name[0] }}</div>
+                <div>
+                  <div style="font-size:14.5px;font-weight:600">{{ it.name }}</div>
+                  <div style="font-size:11px;color:#7a7778;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px">{{ it.cat }}</div>
+                </div>
+              </div>
+              @if (it.state === 'connected') { <span class="pill pill-success">CONNECTED</span> }
+              @if (it.state === 'configure') { <span class="pill pill-warm">CONFIGURE</span> }
+            </div>
+            <div style="font-size:13px;color:#4a4849;line-height:1.5;margin-bottom:14px">{{ it.desc }}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:12px;color:#7a7778">{{ it.acc || '—' }}</div>
+              @if (it.state === 'connected') { <button class="btn-tertiary" style="padding:6px 10px">Manage</button> }
+              @else if (it.state === 'configure') { <button class="btn-secondary" style="padding:8px 14px">Configure</button> }
+              @else { <button class="btn-secondary" style="padding:8px 14px">Connect</button> }
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- ══ DATA & EXPORT ══ -->
+    @if (activeSection === 'data') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">ADVANCED · DATA</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">Your data, your move.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Bring data in, take it out, or wipe specific modules. Everything is yours.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Import</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">From CSV</div><div style="font-size:12.5px;color:#7a7778">Tasks, transactions, or habit history.</div></div>
+            <button class="btn-secondary">Choose file</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">From another app</div><div style="font-size:12.5px;color:#7a7778">Things, Todoist, Notion, YNAB, Apple Reminders.</div></div>
+            <button class="btn-secondary">Open importer</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Export</h3></div>
+        <div style="padding:4px 28px 24px">
+          @for (row of [{label:'Tasks',hint:'JSON or CSV · 142 records.',formats:['CSV','JSON']},{label:'Habits',hint:'4 habits · 184 check-ins.',formats:['CSV','JSON']},{label:'Transactions',hint:'312 records · since Jan 2026.',formats:['CSV','QIF','JSON']}]; track row.label) {
+            <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+              <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">{{ row.label }}</div><div style="font-size:12.5px;color:#7a7778">{{ row.hint }}</div></div>
+              <div style="display:flex;gap:6px">
+                @for (f of row.formats; track f) { <button class="btn-tertiary">{{ f }}</button> }
+              </div>
+            </div>
+          }
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Everything</div><div style="font-size:12.5px;color:#7a7778">A signed .zip with every record in JSON.</div></div>
+            <button class="btn-primary" style="padding:10px 16px;font-size:13px">Request export</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px">
+          <h3 style="font-size:18px;margin-bottom:6px">Reset modules</h3>
+          <p style="font-size:13px;color:#4a4849;margin:0 0 14px;line-height:1.5">Use sparingly. Each action permanently removes the chosen data.</p>
+        </div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Clear all completed tasks</div><div style="font-size:12.5px;color:#7a7778">Keeps active tasks and lists.</div></div>
+            <button class="btn-secondary">Clear</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0;border-bottom:1px solid #f6f3f2">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Reset habit history</div><div style="font-size:12.5px;color:#7a7778">Keeps habits, removes check-ins.</div></div>
+            <button class="btn-secondary">Reset</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500;margin-bottom:2px">Delete all transactions</div><div style="font-size:12.5px;color:#7a7778">Keeps categories and goals.</div></div>
+            <button style="background:transparent;border:none;color:#b3261e;font-weight:600;font-size:13.5px;cursor:pointer">Delete</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- ══ BILLING ══ -->
+    @if (activeSection === 'billing') {
+      <div style="margin-bottom:28px">
+        <div class="eyebrow" style="margin-bottom:12px;color:#24389c">ADVANCED · BILLING</div>
+        <h2 style="font-size:32px;line-height:1.05;margin-bottom:8px">Plan &amp; invoices.</h2>
+        <p style="font-size:14.5px;color:#4a4849;margin:0;max-width:560px;line-height:1.55">Lumin is simple here too. One plan, paid monthly or yearly. Cancel any time.</p>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;padding:28px 32px;margin-bottom:16px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px;color:#24389c">YOUR PLAN</div>
+          <h2 style="font-size:28px;margin-bottom:8px">Lumin · Practice</h2>
+          <p style="font-size:13.5px;color:#4a4849;margin:0;max-width:380px;line-height:1.55">Everything — unlimited tasks, habits, accounts, and goals. Billed yearly, two months on us.</p>
+          <div style="display:flex;gap:8px;margin-top:18px">
+            <button class="btn-secondary">Switch to monthly</button>
+            <button class="btn-tertiary">Cancel plan</button>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:6px">
+            <span class="numeric" style="font-size:56px;font-weight:700;line-height:1">$60</span>
+            <span style="font-size:14px;color:#7a7778">/ year</span>
+          </div>
+          <div style="font-size:12.5px;color:#7a7778;margin-top:6px">Next charge: <strong class="numeric" style="color:#1c1b1b">Jan 12, 2027</strong></div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Payment method</h3></div>
+        <div style="padding:4px 28px 24px">
+          <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:14px 0">
+            <div><div style="font-size:14px;font-weight:500">Card on file</div></div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:22px;border-radius:4px;background:linear-gradient(135deg,#24389c,#3f51b5)"></div>
+              <span style="font-size:13px">Visa · ····4421 · exp 09/28</span>
+              <button class="btn-tertiary" style="padding:6px 10px">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:1.5rem;margin-bottom:16px;overflow:hidden">
+        <div style="padding:24px 28px 4px"><h3 style="font-size:18px;margin-bottom:14px">Invoices</h3></div>
+        <div style="padding:4px 28px 24px">
+          @for (inv of [{date:'Jan 12, 2026',amount:'$60.00',plan:'Practice · yearly'},{date:'Jan 12, 2025',amount:'$60.00',plan:'Practice · yearly'},{date:'Jan 12, 2024',amount:'$48.00',plan:'Practice · yearly'}]; track inv.date; let last = $last) {
+            <div [style.border-bottom]="last ? 'none' : '1px solid #f6f3f2'" style="display:grid;grid-template-columns:110px 1fr 110px 90px;gap:16px;align-items:center;padding:14px 0">
+              <span class="numeric" style="font-size:13px;color:#7a7778">{{ inv.date }}</span>
+              <span style="font-size:13.5px">{{ inv.plan }}</span>
+              <span class="numeric" style="font-size:13.5px;font-weight:600">{{ inv.amount }}</span>
+              <button class="btn-tertiary" style="padding:6px 0;text-align:right;justify-self:end">Download</button>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

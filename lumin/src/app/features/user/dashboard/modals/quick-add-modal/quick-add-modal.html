@@ -1,0 +1,58 @@
+<!-- Modal backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center modal-backdrop"
+     style="background:rgba(28,27,27,0.32);backdrop-filter:blur(6px)">
+
+  <!-- Panel -->
+  <div class="modal-panel w-[560px] max-w-[calc(100%-64px)] bg-surface-lowest rounded-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(28,27,27,0.10)]">
+
+    <!-- Accent stripe -->
+    <div class="h-[3px] bg-gradient-primary" style="opacity:0.85"></div>
+
+    <!-- Header -->
+    <div class="px-8 pt-7 pb-2 flex justify-between items-start gap-4">
+      <div>
+        <div class="eyebrow mb-2.5 text-primary" style="color:#24389c">QUICK ADD</div>
+        <h2 class="text-[24px] leading-[1.1] mb-1.5" style="font-family:'Manrope',sans-serif">What's on your mind?</h2>
+        <p class="text-[13px] text-on-variant m-0 leading-relaxed">One field, smart parsing — type naturally and Lumin picks the right module.</p>
+      </div>
+      <button class="w-8 h-8 rounded-xl bg-surface-low border-none cursor-pointer text-[14px] text-on-variant flex-shrink-0">✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="px-8 pt-5">
+      <!-- Type chips -->
+      <div class="flex gap-1.5 mb-4">
+        <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-primary text-white">Task</button>
+        <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Habit check-in</button>
+        <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Transaction</button>
+        <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Note</button>
+      </div>
+
+      <!-- Input -->
+      <div class="bg-surface-low rounded-xl p-4 mb-3.5" style="border:2px solid rgba(36,56,156,0.20)">
+        <input class="w-full border-none outline-none bg-transparent text-[16px] text-on-surface"
+               style="font-family:'Inter',sans-serif"
+               placeholder="Submit grant Friday 3pm #writing !high" />
+      </div>
+
+      <!-- Parse preview chips -->
+      <div class="flex flex-wrap gap-1.5 mb-1">
+        <span class="pill pill-neutral">📅 Friday, 3:00 PM</span>
+        <span class="pill pill-indigo">#writing</span>
+        <span class="pill pill-warm">!high</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-8 py-5 mt-2 flex justify-between items-center">
+      <div class="text-[11.5px] text-on-muted flex gap-3.5">
+        <span><kbd class="lumin-kbd">⌘</kbd> <kbd class="lumin-kbd">↵</kbd> save</span>
+        <span><kbd class="lumin-kbd">esc</kbd> cancel</span>
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-secondary">Cancel</button>
+        <button class="btn-primary">Save task</button>
+      </div>
+    </div>
+  </div>
+</div>

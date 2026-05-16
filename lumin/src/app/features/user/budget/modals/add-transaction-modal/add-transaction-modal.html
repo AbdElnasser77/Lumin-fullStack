@@ -1,0 +1,91 @@
+<!-- Modal backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center modal-backdrop"
+     style="background:rgba(28,27,27,0.32);backdrop-filter:blur(6px)">
+
+  <div class="modal-panel w-[560px] max-w-[calc(100%-64px)] bg-surface-lowest rounded-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(28,27,27,0.10)]">
+    <div class="h-[3px] bg-gradient-secondary" style="opacity:0.85"></div>
+
+    <!-- Header -->
+    <div class="px-8 pt-7 pb-2 flex justify-between items-start gap-4">
+      <div>
+        <div class="eyebrow mb-2.5" style="color:#006a6a">LEDGER · NEW</div>
+        <h2 class="text-[24px] leading-[1.1] mb-1.5" style="font-family:'Manrope',sans-serif">Record a transaction.</h2>
+        <p class="text-[13px] text-on-variant m-0 leading-relaxed">Every dollar, accounted. Lumin will assign it to the right category and goal.</p>
+      </div>
+      <button class="w-8 h-8 rounded-xl bg-surface-low border-none cursor-pointer text-[14px] text-on-variant flex-shrink-0">✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="px-8 pt-5">
+
+      <!-- Direction toggle -->
+      <div class="flex bg-surface-low rounded-xl p-1 gap-1 mb-[18px]">
+        <button class="flex-1 py-2.5 border-none cursor-pointer rounded-lg bg-surface-lowest text-[13px] font-semibold text-on-surface shadow-[0_2px_8px_-2px_rgba(28,27,27,0.06)]">Spending</button>
+        <button class="flex-1 py-2.5 border-none cursor-pointer rounded-lg bg-transparent text-[13px] font-semibold text-on-muted">Income</button>
+        <button class="flex-1 py-2.5 border-none cursor-pointer rounded-lg bg-transparent text-[13px] font-semibold text-on-muted">Transfer</button>
+      </div>
+
+      <!-- Big amount input -->
+      <div class="bg-surface-low rounded-2xl px-7 py-6 mb-[18px] text-center">
+        <div class="eyebrow mb-2.5" style="color:#006a6a">AMOUNT</div>
+        <div class="flex items-center justify-center gap-1.5">
+          <span class="font-bold text-[36px] text-on-surface" style="font-family:'Manrope',sans-serif">−$</span>
+          <input value="42.18"
+                 class="bg-transparent border-none outline-none text-[56px] font-bold text-on-surface w-56 text-left"
+                 style="font-family:'Manrope',sans-serif;letter-spacing:-0.02em" />
+        </div>
+        <div class="text-[11.5px] text-on-muted mt-1.5 tracking-[0.08em]" style="font-family:'JetBrains Mono',monospace">USD</div>
+      </div>
+
+      <div class="grid gap-3.5 mb-4" style="grid-template-columns:1.4fr 1fr">
+        <div>
+          <label class="lumin-label">Merchant / source</label>
+          <input class="lumin-input" value="Forager Market" />
+        </div>
+        <div>
+          <label class="lumin-label">Date</label>
+          <input class="lumin-input" value="May 02, 2026" />
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="lumin-label">Category</label>
+        <div class="flex flex-wrap gap-1.5">
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Housing</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer text-white" style="background:#006a6a">Food &amp; groceries</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Studio rent</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Transit</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Joy &amp; culture</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Health</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Subscriptions</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Income</button>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="lumin-label">Account</label>
+        <div class="lumin-input flex items-center gap-2.5">
+          <span class="w-[22px] h-[22px] rounded-[6px] flex items-center justify-center text-white text-[11px] font-bold flex-shrink-0" style="background:#006a6a;font-family:'Manrope',sans-serif">C</span>
+          <span class="flex-1 text-[13.5px]">Checking · ····3041</span>
+          <span class="text-[11px] text-on-muted">$8,420.18 available</span>
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="lumin-label">Note (optional)</label>
+        <input class="lumin-input" placeholder="Lemons, sourdough, espresso beans…" />
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-8 py-5 mt-2 flex justify-between items-center">
+      <div class="text-[11.5px] text-on-muted">
+        After this: <strong class="numeric" style="color:#006a6a">$369.82</strong> remaining in groceries
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-secondary">Cancel</button>
+        <button class="btn-primary-teal">Save transaction</button>
+      </div>
+    </div>
+  </div>
+</div>

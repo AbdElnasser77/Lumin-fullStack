@@ -1,0 +1,102 @@
+<div style="width:308px;background:rgba(252,249,248,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:1.5rem;box-shadow:var(--shadow-lift);padding:8px">
+
+  <!-- Identity -->
+  <div style="display:flex;align-items:center;gap:12px;padding:14px 14px 16px">
+    <div style="width:44px;height:44px;border-radius:999px;background:linear-gradient(135deg,#006a6a,#4ddedb);display:flex;align-items:center;justify-content:center;color:white;font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;flex-shrink:0">IH</div>
+    <div style="flex:1;min-width:0">
+      <div style="font-size:14.5px;font-weight:600;line-height:1.2">Iris Halloran</div>
+      <div style="font-size:12px;color:#7a7778;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">iris&#64;studio.co</div>
+    </div>
+    <span class="pill pill-indigo">PRACTICE</span>
+  </div>
+
+  <!-- Workspace -->
+  <div style="background:#f6f3f2;border-radius:0.75rem;padding:10px 12px;margin:0 6px 8px">
+    <div class="eyebrow" style="margin-bottom:6px;font-size:9px">WORKSPACE</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#24389c,#3f51b5)"></div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600">Personal · Iris</div>
+        <div style="font-size:11px;color:#7a7778">Solo · 1 member</div>
+      </div>
+      <span style="font-size:10px;color:#7a7778;font-family:'JetBrains Mono',monospace">▾</span>
+    </div>
+  </div>
+
+  <!-- Today snapshot -->
+  <div style="margin:0 6px 8px;padding:12px;background:#f6f3f2;border-radius:0.75rem;display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+    <div>
+      <div class="eyebrow" style="margin-bottom:2px;font-size:8.5px;color:#24389c">TASKS</div>
+      <div class="numeric" style="font-size:16px;font-weight:700;line-height:1">3/7</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom:2px;font-size:8.5px;color:#24389c">STREAK</div>
+      <div class="numeric" style="font-size:16px;font-weight:700;line-height:1">14d</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="margin-bottom:2px;font-size:8.5px;color:#006a6a">LEFT</div>
+      <div class="numeric" style="font-size:16px;font-weight:700;line-height:1">$1,260</div>
+    </div>
+  </div>
+
+  <div style="height:1px;background:#ebe7e6;margin:6px 14px"></div>
+
+  <a routerLink="/profile" (click)="close.emit()" style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;text-decoration:none;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">◉</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">My profile</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#ebe7e6;padding:2px 6px;border-radius:4px;color:#4a4849">⌘P</span>
+  </a>
+
+  <a routerLink="/settings" (click)="close.emit()" style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;text-decoration:none;color:#1c1b1b;background:#f6f3f2">
+    <span style="width:18px;text-align:center;font-size:12px;color:#24389c">⚙</span>
+    <span style="flex:1;font-size:13.5px;font-weight:600">Settings</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#ebe7e6;padding:2px 6px;border-radius:4px;color:#4a4849">⌘,</span>
+  </a>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">＋</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Quick add</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#ebe7e6;padding:2px 6px;border-radius:4px;color:#4a4849">N</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">⌘</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Search</span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;background:#ebe7e6;padding:2px 6px;border-radius:4px;color:#4a4849">⌘K</span>
+  </div>
+
+  <div style="height:1px;background:#ebe7e6;margin:6px 14px"></div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">◑</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Appearance</span>
+    <span style="font-size:11px;color:#7a7778">Paper</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">⌨</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Keyboard shortcuts</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">?</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Help &amp; docs</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#1c1b1b">
+    <span style="width:18px;text-align:center;font-size:12px;color:#7a7778">↗</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Send feedback</span>
+  </div>
+
+  <div style="height:1px;background:#ebe7e6;margin:6px 14px"></div>
+
+  <div (click)="close.emit()" style="display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:0.5rem;cursor:pointer;color:#b3261e">
+    <span style="width:18px;text-align:center;font-size:12px;color:#b3261e">→</span>
+    <span style="flex:1;font-size:13.5px;font-weight:500">Sign out</span>
+  </div>
+
+  <div style="padding:10px 16px 8px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:#7a7778;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em">
+    <span>LUMIN · v2.4.1</span>
+    <span>EST 2026</span>
+  </div>
+</div>

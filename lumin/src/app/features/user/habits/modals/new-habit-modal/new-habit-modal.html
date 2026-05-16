@@ -1,0 +1,91 @@
+<!-- Modal backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center modal-backdrop"
+     style="background:rgba(28,27,27,0.32);backdrop-filter:blur(6px)">
+
+  <div class="modal-panel w-[600px] max-w-[calc(100%-64px)] bg-surface-lowest rounded-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(28,27,27,0.10)]">
+    <div class="h-[3px] bg-gradient-primary" style="opacity:0.85"></div>
+
+    <!-- Header -->
+    <div class="px-8 pt-7 pb-2 flex justify-between items-start gap-4">
+      <div>
+        <div class="eyebrow mb-2.5 text-primary" style="color:#24389c">HABITS · NEW</div>
+        <h2 class="text-[24px] leading-[1.1] mb-1.5" style="font-family:'Manrope',sans-serif">A small, repeatable practice.</h2>
+        <p class="text-[13px] text-on-variant m-0 leading-relaxed">Anchor it to a cue you already have — that's how it sticks.</p>
+      </div>
+      <button class="w-8 h-8 rounded-xl bg-surface-low border-none cursor-pointer text-[14px] text-on-variant flex-shrink-0">✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="px-8 pt-5">
+      <!-- Glyph + name row -->
+      <div class="grid gap-4" style="grid-template-columns:88px 1fr">
+        <!-- Glyph picker -->
+        <div>
+          <label class="lumin-label">Mark</label>
+          <div class="w-[76px] h-[76px] rounded-xl bg-surface-low flex items-center justify-center text-[32px] text-primary" style="font-family:'Manrope',sans-serif">✎</div>
+          <div class="flex flex-wrap gap-1 mt-2 w-[76px]">
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-primary">✎</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">◐</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">◌</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">☱</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">✦</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">◇</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">▲</button>
+            <button class="w-4 h-4 border-none bg-transparent cursor-pointer text-[13px] p-0 text-on-muted">♡</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-4">
+            <label class="lumin-label">Habit name</label>
+            <input class="lumin-input" placeholder="e.g. Morning pages" />
+          </div>
+          <div class="mb-4">
+            <label class="lumin-label">Cue · when will you do this?</label>
+            <div class="text-[11.5px] text-on-muted mb-2">Anchor it to an existing routine for a higher hit rate.</div>
+            <input class="lumin-input" placeholder="After my first coffee · 7:30" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Cadence -->
+      <div class="mb-4">
+        <label class="lumin-label">Cadence</label>
+        <div class="flex gap-1.5 mb-3">
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-primary text-white">Every day</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Weekdays</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">Custom days</button>
+          <button class="px-3 py-[7px] rounded-full border-none text-[12px] font-semibold cursor-pointer bg-surface-low text-on-variant">X times / week</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3.5 mb-4">
+        <div>
+          <label class="lumin-label">Reminder</label>
+          <input class="lumin-input" value="07:30" />
+        </div>
+        <div>
+          <label class="lumin-label">Goal length</label>
+          <input class="lumin-input" value="30 days" />
+        </div>
+      </div>
+
+      <div class="mb-2">
+        <label class="lumin-label">Why this habit? (optional)</label>
+        <div class="text-[11.5px] text-on-muted mb-2">Visible at check-in time. A line, not an essay.</div>
+        <input class="lumin-input" placeholder="To clear my head before the day asks anything of me." />
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-8 py-5 mt-2 flex justify-between items-center">
+      <div class="text-[11.5px] text-on-muted">
+        Today's chain starts <strong class="numeric text-primary">tomorrow</strong> · 06:00.
+      </div>
+      <div class="flex gap-2">
+        <button class="btn-secondary">Cancel</button>
+        <button class="btn-primary">Begin practice</button>
+      </div>
+    </div>
+  </div>
+</div>

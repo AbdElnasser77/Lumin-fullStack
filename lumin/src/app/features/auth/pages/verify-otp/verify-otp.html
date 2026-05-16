@@ -1,0 +1,50 @@
+<div class="w-150 bg-surface-lowest rounded-2xl p-10 shadow-2xl">
+
+  <div class="mb-7">
+    <h1 class="text-[32px] leading-[1.05] mb-2.5">
+      Check your inbox.
+    </h1>
+    <p class="text-[14px] text-on-variant leading-relaxed mt-2">
+      We sent a 6-digit code to <strong class="text-primary">{{email}}</strong>. It expires in 10 minutes.
+    </p>
+  </div>
+
+  <div class="flex gap-2.5 justify-center mb-6 py-5 w-full">
+
+    <p-toast />
+    <form #exampleForm="ngForm" (ngSubmit)="onSubmit(exampleForm)" class="flex flex-col w-full gap-4">
+      <div class="flex flex-col items-center gap-1">
+        <p-inputotp #otpModel="ngModel" [integerOnly]="true" size="large" [(ngModel)]="value"
+          [invalid]="otpModel.invalid && (otpModel.touched || exampleForm.submitted)" name="value" required
+          [length]="6" />
+        @if (otpModel.invalid && (otpModel.touched || exampleForm.submitted)) {
+        <p-message severity="error" size="small" variant="simple">Passcode is required.</p-message>
+        }
+      </div>
+      @if(isLoading){
+      <spinner class="mt-2"></spinner>
+      }
+      <button [hidden]="isLoading" type="submit" class="btn-primary w-full h-12 mt-2 text-[15px] justify-center" severity="secondary">Verify and
+        continue</button>
+    </form>
+  </div>
+
+
+  <div class="mt-6 p-4 bg-surface-low rounded-xl flex justify-between items-center">
+    <div>
+      <div class="text-[12px] text-on-muted mb-0.5">Didn't receive a code?</div>
+      <div class="text-[13px] font-semibold text-on-surface">
+        Resend in <span class="numeric text-primary">
+          <countdown #countDown [hidden]="canResend" (event)="onTimerDone($event)"
+            [config]="{ leftTime: resendTimer, format: 'mm:ss' }"></countdown>
+          @if(canResend){
+          <button class="text-primary cursor-pointer hover:text-primary-mid" (click)="resetOtpTimer()">Resend
+            OTP</button>
+          }
+        </span>
+      </div>
+    </div>
+
+    <a routerLink="/auth/sign-up" class="btn-tertiary text-[13px] px-3.5 py-2">Try another email</a>
+  </div>
+</div>

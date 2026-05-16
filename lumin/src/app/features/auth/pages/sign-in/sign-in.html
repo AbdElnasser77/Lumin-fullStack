@@ -1,0 +1,58 @@
+<div class="w-150 bg-surface-lowest rounded-2xl p-10 shadow-2xl">
+
+  <div class="mb-7">
+    <div class="eyebrow mb-3.5">WELCOME BACK</div>
+    <h1 class="text-3xl leading-[1.05] mb-2.5 font-bold select-none">
+      Continue your<br>quiet practice.
+    </h1>
+    <p class="text-[14px] text-on-variant leading-relaxed mt-2">
+      Sign in to pick up where you left off — your tasks, habits, and budget are waiting.
+    </p>
+  </div>
+
+
+  <p-toast />
+  <form [formGroup]="signInForm">
+
+    <div class="mb-4">
+      <label class="lumin-label" for="email">Email</label>
+      <input class="lumin-input" formControlName="email" id="email" type="email" placeholder="you@domain.com" />
+    </div>
+
+    <div class="mb-4">
+      <div class="flex justify-between items-baseline mb-2">
+        <label class="lumin-label" style="margin-bottom:0">Password</label>
+        <a routerLink="/auth/forgot-password"
+          class="text-[11px] text-primary font-semibold tracking-[0.04em] no-underline">Forgot?</a>
+      </div>
+      <input class="lumin-input" formControlName="password" type="password" placeholder="••••••••••" />
+    </div>
+
+    @if(isLoading){
+    <spinner></spinner>
+    }
+    <button [hidden]="isLoading" (click)="signIn()" class="btn-primary w-full h-12 text-[15px] justify-center">Sign
+      in</button>
+  </form>
+
+  <!-- Divider -->
+  <!-- <div class="flex items-center gap-3 my-5 text-on-muted text-[11px] tracking-[0.16em] uppercase">
+    <div class="flex-1 h-px bg-surface-high"></div>
+    or
+    <div class="flex-1 h-px bg-surface-high"></div>
+  </div> -->
+
+  <!-- Social buttons -->
+  <!-- <div class="flex gap-2.5">
+    <button class="flex-1 h-11 bg-surface-low border-none rounded-xl flex items-center justify-center gap-2.5 text-[13px] font-medium text-on-surface cursor-pointer">
+      <span class="font-bold" style="font-family:'JetBrains Mono',monospace">G</span> Google
+    </button>
+    <button class="flex-1 h-11 bg-surface-low border-none rounded-xl flex items-center justify-center gap-2.5 text-[13px] font-medium text-on-surface cursor-pointer">
+      <span class="font-bold" style="font-family:'JetBrains Mono',monospace"></span> Apple
+    </button>
+  </div> -->
+
+  <div class="text-center mt-6 text-[13px] text-on-variant">
+    New to Lumin? <a routerLink="/auth/sign-up" class="text-primary font-semibold no-underline">Create an account</a>
+  </div>
+</div>

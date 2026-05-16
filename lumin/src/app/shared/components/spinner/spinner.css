@@ -1,0 +1,4 @@
+:host ::ng-deep .custom-spinner svg circle {
+  stroke: #24389c !important;
+}
+
