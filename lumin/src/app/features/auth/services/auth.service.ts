@@ -22,7 +22,7 @@ export class AuthService {
     return this.http.post(`${this.base}/forgot-password`, data);
   }
 
-  sendEmailConfirmation(email: string ): Observable<any> {
+  sendEmailConfirmation(email: string): Observable<any> {
     return this.http.post(`${this.base}/send-email-confirmation`, {email});
   }
 

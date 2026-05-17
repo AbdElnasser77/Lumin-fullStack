@@ -123,10 +123,8 @@ public class AuthService : IAuthService
         var email = NormalizeEmail(request.Email);
         var user = await _users.GetByEmailAsync(email, ct);
 
-        const string genericMessage = "If an account exists for this email, a password reset link has been sent.";
-
         if (user is null)
-            return new ForgotPasswordResponse { Message = genericMessage };
+            throw new AuthException("No account found with this email address.", 404);
 
         var (resetToken, _) = IssueResetToken(user);
         _users.Update(user);
@@ -139,7 +137,7 @@ public class AuthService : IAuthService
             $"Click the link below to reset your password. It expires in {OtpLifetimeMinutes} minutes.\n\n{link}",
             ct);
 
-        return new ForgotPasswordResponse { Message = genericMessage, ResetToken = resetToken };
+        return new ForgotPasswordResponse { Message = "A password reset link has been sent to your email.", ResetToken = resetToken };
     }
 
     public async Task SendEmailConfirmationAsync(SendEmailConfirmationRequest request, CancellationToken ct = default)

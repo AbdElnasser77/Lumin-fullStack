@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm!: FormGroup;
   isLoading: boolean = false;
-  step: number = 1;
+  step = signal(1);
   expiryTime: string = '15:00';
 
   private fb = inject(FormBuilder);
@@ -38,8 +38,8 @@ export class ForgotPasswordComponent implements OnInit {
     const resetPageUrl = `${window.location.origin}/auth/reset-password`;
 
     this.authService.forgotPassword({ email, redirectUrl: resetPageUrl }).subscribe({
-      next: () => {
-        this.step = 2;
+      next: (res) => {
+        this.step.set(2);
         this.isLoading = false;
       },
       error: (err) => {
@@ -50,7 +50,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onResend() {
-    this.step = 1;
+    this.step.set(1);
   }
 
   backToSignIn() {
@@ -58,7 +58,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   changeEmail() {
-    this.step = 1;
+    this.step.set(1);
+
     this.forgotPasswordForm.reset();
   }
 

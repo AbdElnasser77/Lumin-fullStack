@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,14 +14,15 @@ import { Spinner } from '../../../../shared/components/spinner/spinner';
   selector: 'app-verify-otp',
   templateUrl: './verify-otp.html',
   imports: [CommonModule, RouterLink, InputOtpModule, MessageModule, ToastModule, ButtonModule, FormsModule, ReactiveFormsModule, CountdownComponent, Spinner],
-  standalone: true
+  standalone: true,
+  styleUrl:'./verify-otp.css'
 })
 export class VerifyOtpComponent {
   email: string = history.state.email;
   value: string = '';
   resendTimer: number = 60;
   canResend: boolean = false;
-  isLoading: boolean = false;
+  isLoading = signal(false);
 
   private messageService = inject(MessageService);
   private authService = inject(AuthService);
@@ -30,7 +31,7 @@ export class VerifyOtpComponent {
   @ViewChild('countDown') countDown!: CountdownComponent;
 
   onSubmit(form: any) {
-    this.isLoading = true;
+    this.isLoading.set(true);
     if (form.valid && form.value.value.length === 6) {
       const data = {
         email: this.email,
@@ -40,21 +41,19 @@ export class VerifyOtpComponent {
         next: (res) => {
           this.authService.setToken(res.token);
           this.router.navigate(['/dashboard']);
-          this.isLoading = false;
-
+          this.isLoading.set(false);
         },
         error: (err) => {
           console.log(err);
           this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error.message, life: 3000 });
-          this.isLoading = false;
-
+          this.isLoading.set(false);
         }
       })
     } else {
       this.messageService.add({
         severity: 'error', summary: 'Invalid OTP', detail: 'Please enter all OTP digits before submitting', life: 3000
       });
-      this.isLoading = false;
+      this.isLoading.set(false);
 
     }
   }
@@ -71,10 +70,10 @@ export class VerifyOtpComponent {
 
     this.authService.sendEmailConfirmation(this.email).subscribe({
       next: (res) => {
-        console.log(res);
+        this.messageService.add({ severity: 'success', summary: `OTP Sent to ${this.email}`, life: 3000 });
       },
       error: (err) => {
-        console.log(err);
+        this.messageService.add({ severity: 'error', summary: `Something went wrong`, detail: err.error.message, life: 3000 });
       }
     });
   }

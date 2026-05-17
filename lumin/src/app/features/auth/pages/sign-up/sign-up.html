@@ -1,7 +1,7 @@
 <div class="w-150 bg-surface-lowest rounded-2xl p-10 shadow-2xl">
   <form [formGroup]="signupForm">
     <div class="mb-7">
-    <div class="eyebrow mb-3.5">Begin</div>
+      <div class="eyebrow mb-3.5">Begin</div>
       <h1 class="text-3xl leading-[1.05] mb-2.5 font-bold">
         Make space for<br>what matters.
       </h1>
@@ -28,21 +28,35 @@
 
     <div class="mb-2">
       <label class="lumin-label">Password</label>
-      <input class="lumin-input" formControlName="password" type="password" placeholder="••••••••••" />
+      <p-password
+        formControlName="password"
+        [feedback]="false"
+        [toggleMask]="true"
+        autocomplete="off"
+        placeholder="••••••••••"
+        class="lumin-password"
+        inputStyleClass="lumin-input"
+      />
       <div class="text-[12px] text-on-muted my-2">At least 8 characters · one number · one symbol</div>
       <validation-message [control]="signupForm.get('password')" label="Password" />
     </div>
 
     @if(signupForm.get('password')?.dirty){
-      <password-strength [password]="this.signupForm.get('password')?.value"></password-strength>
+    <password-strength [password]="this.signupForm.get('password')?.value"></password-strength>
     }
 
     <div class="mb-4">
       <label class="lumin-label">Confirm Password</label>
-      <input class="lumin-input" formControlName="rePassword" type="password" placeholder="••••••••••" />
-      <validation-message
-        [control]="signupForm.get('rePassword')"
-        label="Confirm password"
+         <p-password
+        formControlName="rePassword"
+        [feedback]="false"
+        [toggleMask]="true"
+        autocomplete="off"
+        placeholder="••••••••••"
+        class="lumin-password"
+        inputStyleClass="lumin-input"
+      />
+      <validation-message [control]="signupForm.get('rePassword')" label="Confirm password"
         [groupErrors]="signupForm.errors" />
     </div>
 
@@ -55,10 +69,20 @@
       <validation-message [control]="signupForm.get('checkTerms')" label="Terms" />
     </div>
 
-    @if(isloading){
-      <spinner></spinner>
+    @if(errorMessage){
+    <div class="flex items-start gap-2.5 bg-danger/8 border border-danger/20 rounded-xl px-4 py-3 mb-4">
+      <span class="w-4.5 h-4.5 rounded-full bg-danger flex items-center justify-center shrink-0 mt-px">
+        <span class="text-white font-bold leading-none" style="font-size:9px">!</span>
+      </span>
+      <span class="text-[13px] text-danger leading-snug">{{ errorMessage }}</span>
+    </div>
     }
-    <button [hidden]="isloading" class="btn-primary w-full h-12 text-[15px] justify-center" (click)="submitForm()">Create my account</button>
+
+    @if(isloading()){
+    <spinner></spinner>
+    }
+    <button [hidden]="isloading()" class="btn-primary w-full h-12 text-[15px] justify-center"
+      (click)="submitForm()">Create my account</button>
 
     <div class="text-center mt-6 text-[13px] text-on-variant">
       Already with us? <a routerLink="/auth/sign-in" class="text-primary font-semibold no-underline">Sign in</a>

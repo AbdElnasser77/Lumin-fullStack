@@ -21,10 +21,10 @@
         <p-message severity="error" size="small" variant="simple">Passcode is required.</p-message>
         }
       </div>
-      @if(isLoading){
+      @if(isLoading()){
       <spinner class="mt-2"></spinner>
       }
-      <button [hidden]="isLoading" type="submit" class="btn-primary w-full h-12 mt-2 text-[15px] justify-center" severity="secondary">Verify and
+      <button [hidden]="isLoading()" type="submit" class="btn-primary w-full h-12 mt-2 text-[15px] justify-center" severity="secondary">Verify and
         continue</button>
     </form>
   </div>
